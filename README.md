@@ -86,8 +86,32 @@ WHERE ranking = 1;
 ```
 -
      - Sales performance by time, city, and payment method.
+
+```sql
+SELECT 
+	category,
+    SUM(total) AS total_revenue,
+    SUM(total*profit_margin) AS total_profit
+FROM walmart
+GROUP BY category
+ORDER BY total_profit DESC;
+```
+-
      - Analyzing peak sales periods and customer buying patterns.
-     - Profit margin analysis by branch and category.
+```sql
+SELECT DISTINCT
+	branch,
+    CASE 
+		WHEN HOUR(DATE_FORMAT(TIME(time), '%H:%i:%s')) < 12 THEN 'Morning'
+        WHEN HOUR(DATE_FORMAT(TIME(time), '%H:%i:%s')) BETWEEN 12 AND 17 THEN 'Afternoon'
+        ELSE 'Evening'
+	END AS shift,
+        COUNT(*) AS invoices
+FROM walmart
+GROUP BY branch, shift
+ORDER BY branch, invoices DESC;
+```
+-
    - **Documentation**: Keep clear notes of each query's objective, approach, and results.
 
 ### 10. Project Publishing and Documentation
