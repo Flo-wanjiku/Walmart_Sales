@@ -65,7 +65,7 @@ FROM walmart
 GROUP BY category
 ORDER BY total_profit DESC;
 ```
-
+-
      - Identifying best-selling product categories.
 ```sql
 SELECT 
@@ -84,7 +84,7 @@ GROUP BY branch, category
 ) AS ranked
 WHERE ranking = 1;
 ```
-
+-
      - Sales performance by time, city, and payment method.
      - Analyzing peak sales periods and customer buying patterns.
      - Profit margin analysis by branch and category.
